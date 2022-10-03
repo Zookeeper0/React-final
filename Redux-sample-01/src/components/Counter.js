@@ -1,35 +1,35 @@
-import { Component } from 'react';
-import { useDispatch, useSelector, connect } from 'react-redux';
-import { INCREMENT } from '../store/index';
+import { Component } from "react";
+import { useDispatch, useSelector, connect } from "react-redux";
+import { INCREMENT } from "../store/index";
 
-import { counterActions } from '../store/index';
-import classes from './Counter.module.css';
+import { counterActions } from "../store/index";
+import classes from "./Counter.module.css";
 
 const Counter = () => {
   const dispatch = useDispatch();
-  const counter = useSelector(state => state.counter);
-  const show = useSelector(state => state.showCounter);
+  const counter = useSelector((state) => state.counter.counter);
+  const show = useSelector((state) => state.counter.showCounter);
 
   const incrementHandler = () => {
-    dispatch( counterActions.increment() ); 
+    dispatch(counterActions.increment());
   };
 
   const increaseHandler = () => {
-    dispatch(counterActions.increase(10) );   // toolkit이 자동으로 액션생성자 생성 { typeL SINE_UNIQUE_IDENTIFIER, payload: 10}
-  }
+    dispatch(counterActions.increase(10)); // toolkit이 자동으로 액션생성자 생성 { typeL SINE_UNIQUE_IDENTIFIER, payload: 10}
+  };
 
   const decrementHandler = () => {
-    dispatch( counterActions.decrement() );
+    dispatch(counterActions.decrement());
   };
 
   const toggleCounterHandler = () => {
-    dispatch( counterActions.toggleCounter() );
+    dispatch(counterActions.toggleCounter());
   };
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      { show && <div className={classes.value}>{counter}</div>}
+      {show && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={incrementHandler}>Increment</button>
         <button onClick={increaseHandler}>Increment by 10</button>
